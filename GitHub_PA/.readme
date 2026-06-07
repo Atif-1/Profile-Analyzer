@@ -1,0 +1,100 @@
+# GitHub Profile Analysis API
+
+This is a Node.js Express backend project that analyzes GitHub user profiles and stores the profile data in a MySQL database using Sequelize.
+
+## Features
+
+- Analyze a GitHub profile by username and save the profile data
+- Retrieve a saved profile analysis by username
+- List all saved analyses with pagination
+- Delete a saved profile analysis by ID
+
+## Prerequisites
+
+- Node.js 18 or newer
+- npm
+- MySQL database
+
+## Setup Instructions
+
+1. Clone the repository or copy the project files.
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create a `.env` file in the project root and add your database settings. Example:
+
+```env
+DB=your_database_name
+USER=your_database_user
+PASSWORD=your_database_password
+DB_HOST=localhost
+PORT=3000
+```
+
+4. Make sure your MySQL server is running, and the specified database exists.
+
+5. Start the app:
+
+```bash
+npm start
+```
+
+6. The server will start on the port defined in `.env`, or default to `3000`.
+
+## API Endpoints
+
+Base URL: `http://localhost:3000`
+
+### Analyze profile
+
+- Method: `POST`
+- Endpoint: `/analyze-profile`
+- Body:
+  - `username` (string, required)
+
+### Get saved profile analysis
+
+- Method: `POST`
+- Endpoint: `/profile-analysis`
+- Body:
+  - `username` (string, required)
+
+### Get all analyses
+
+- Method: `GET`
+- Endpoint: `/get-analysis`
+- Query parameters:
+  - `page` (optional, default `1`)
+  - `limit` (optional, default `10`)
+
+### Delete analysis
+
+- Method: `DELETE`
+- Endpoint: `/delete-analysis/:id`
+- URL parameter:
+  - `id` (profile analysis record ID)
+
+## Project Structure
+
+- `app.js` - Express application and middleware setup
+- `server.js` - Server startup and database sync
+- `routes/profileRoutes.js` - API route definitions
+- `controller/profileController.js` - Request handlers and GitHub API integration
+- `model/` - Sequelize models and DB sync logic
+- `config/database.js` - Sequelize database connection setup
+
+## Notes
+
+- The app uses `nodemon` for development restarts.
+- Sequelize will sync models with the database when the server starts.
+- The GitHub profile analyzer fetches data from the GitHub public API.
+
+
+## Live URL
+
+Live Base URL: `renderdep.onrender.com`
+
